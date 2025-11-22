@@ -18,17 +18,6 @@ namespace Fuck_Dialog_Saving.PATCHES
             return false;
         }
 
-        // Patch for SetMechanicLearned
-        [HarmonyPrefix, HarmonyPatch(typeof(ProgressionData), nameof(ProgressionData.SetMechanicLearned))]
-        public static bool PrefixMechanicLearned(MechanicsConcept mechanic)
-        {
-            if (!SaveFile.IsAscension && !ProgressionData.Data.learnedMechanics.Contains(mechanic))
-            {
-                Console.WriteLine($"[ProgressionDataPatches] Skipping saving mechanic: {mechanic}");
-            }
-            return false;
-        }
-
         // Patch for SetCardLearned
         [HarmonyPrefix, HarmonyPatch(typeof(ProgressionData), nameof(ProgressionData.SetCardLearned))]
         public static bool PrefixCardLearned(CardInfo card)
